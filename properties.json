@@ -1,0 +1,200 @@
+{
+  "mainPackage": "com.potatotech.testesbackend",
+  "projectName": "testes-backend",
+  "entities": [
+    {
+      "entityName": "city",
+      "tableName": "city",
+      "entityFields": [
+        {
+          "comment": "Identificador único da cidade",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "uuid",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "Nome da cidade",
+          "fieldName": "name",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "codigo da cidade",
+          "fieldName": "code",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "UD",
+          "fieldName": "state",
+          "fieldProperties": {
+            "fieldType": "state",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "LAZY",
+            "relationShip": "OneToOne"
+          }
+        }
+      ]
+    },
+    {
+      "entityName": "state",
+      "tableName": "state",
+      "entityFields": [
+        {
+          "comment": "Identificador único do estado",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "uuid",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "Nome do estado",
+          "fieldName": "name",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "codigo da estado",
+          "fieldName": "code",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Pais",
+          "fieldName": "country",
+          "fieldProperties": {
+            "fieldType": "country",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "LAZY",
+            "relationShip": "OneToOne"
+          }
+        }
+      ]
+    },
+    {
+      "entityName": "country",
+      "tableName": "country",
+      "entityFields": [
+        {
+          "comment": "Identificador único do estado",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "uuid",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "Nome do pais",
+          "fieldName": "name",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "codigo da pais",
+          "fieldName": "code",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        }
+      ]
+    },
+    {
+      "entityName": "movimentacoes",
+      "tableName": "movimentacoes",
+      "ignoregenerator": true,
+      "entityFields": [
+        {
+          "comment": "Identificador único do estado",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "uuid",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "Nome do pais",
+          "fieldName": "name",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "codigo da pais",
+          "fieldName": "code",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "methodname": "movimentacoesSave",
+      "metadata": {
+        "input": {
+          "parameters": [
+            {
+              "movimentacao": "movimentacoes",
+              "caixa": "caixa",
+              "dubplicatas": "duplicatas*"
+            }
+          ]
+        },
+        "output": "movimentacoes",
+        "anonymous": false
+      }
+    }
+  ],
+  "enums": []
+}
