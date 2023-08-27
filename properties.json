@@ -47,7 +47,7 @@
           },
           "relationShips": {
             "fetchType": "LAZY",
-            "relationShip": "OneToOne"
+            "relationShip": "ManyToOne"
           }
         }
       ]
@@ -96,8 +96,8 @@
             "valueDefault": ""
           },
           "relationShips": {
-            "fetchType": "LAZY",
-            "relationShip": "OneToOne"
+            "fetchType": "EAGER",
+            "relationShip": "ManyToOne"
           }
         }
       ]
