@@ -18,9 +18,10 @@
 		<spring-cloud.version>2022.0.3</spring-cloud.version>
 		<jjwt.version>0.11.5</jjwt.version>
 		<authorization.version>1.0.2</authorization.version>
-		<entity-generator.version>0.0.8.5-SNAPSHOT</entity-generator.version>
+		<entity-generator.version>0.0.8.12-SNAPSHOT</entity-generator.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
@@ -41,7 +42,17 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-sql</artifactId>
+			<version>5.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

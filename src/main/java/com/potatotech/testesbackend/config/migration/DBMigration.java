@@ -36,7 +36,7 @@ public class DBMigration {
                     .locations("classpath:db/migration")
                     .dataSource(configContext.getUrl(),configContext.getUsername(),configContext.getPasswod())
                     .createSchemas(true)
-                    .schemas("PLATFORM_"+tenant.toUpperCase())
+                    .schemas(configContext.getDatabase().toUpperCase().concat("_").concat(tenant.toUpperCase()))
                     .load();
             fly.migrate();
 
