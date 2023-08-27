@@ -208,6 +208,28 @@
       ]
     }
   ],
-  "endpoints": [],
+  "endpoints": [
+    {
+      "methodName": "listCity",
+      "httpMethod": "POST",
+      "metadata": {
+        "input": [
+          {
+            "parameterName": "id",
+            "parameterType": "uuid",
+            "list": false
+          }
+        ],
+        "output": [
+          {
+            "parameterName": "city",
+            "parameterType": "city",
+            "list": true
+          }
+        ],
+        "anonymous": true
+      }
+    }
+  ],
   "enums": []
 }
