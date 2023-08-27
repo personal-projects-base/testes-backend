@@ -34,7 +34,7 @@ public class CityHandler implements HandlerBase<CityDTO, UUID> {
     }
 
     @Override
-    public List<CityDTO> getAll(RequestData obj) {
+    public List<ResponseData> getAll(RequestData obj) {
         return null;
     }
 }

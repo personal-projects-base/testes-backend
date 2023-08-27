@@ -21,12 +21,15 @@ public class CountryEntity {
     /**Identificador único do estado**/
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
     
     /**Nome do pais**/
+    @Column(name = "name")
     private String name;
     
     /**codigo da pais**/
+    @Column(name = "code")
     private String code;
     
 }

@@ -21,15 +21,19 @@ public class StateEntity {
     /**Identificador único do estado**/
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
     
     /**Nome do estado**/
+    @Column(name = "name")
     private String name;
     
     /**codigo da estado**/
+    @Column(name = "code")
     private String code;
     
     /**Pais**/
+    @PrimaryKeyJoinColumn(name = "country")
     @OneToOne(fetch = FetchType.LAZY)
     private CountryEntity country;
     

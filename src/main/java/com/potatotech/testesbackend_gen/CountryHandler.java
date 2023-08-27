@@ -34,7 +34,7 @@ public class CountryHandler implements HandlerBase<CountryDTO, UUID> {
     }
 
     @Override
-    public List<CountryDTO> getAll(RequestData obj) {
+    public List<ResponseData> getAll(RequestData obj) {
         return null;
     }
 }

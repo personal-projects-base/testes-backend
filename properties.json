@@ -140,12 +140,11 @@
       ]
     },
     {
-      "entityName": "movimentacoes",
-      "tableName": "movimentacoes",
-      "ignoregenerator": true,
+      "entityName": "pessoas",
+      "tableName": "pessoas",
       "entityFields": [
         {
-          "comment": "Identificador único do estado",
+          "comment": "Identificador único do cadastro da pessoa",
           "fieldName": "id",
           "fieldProperties": {
             "fieldType": "uuid",
@@ -158,7 +157,7 @@
           }
         },
         {
-          "comment": "Nome do pais",
+          "comment": "Nome da pessoa",
           "fieldName": "name",
           "fieldProperties": {
             "fieldType": "string",
@@ -167,34 +166,48 @@
           }
         },
         {
-          "comment": "codigo da pais",
-          "fieldName": "code",
+          "comment": "Logradouro",
+          "fieldName": "logradouro",
           "fieldProperties": {
             "fieldType": "string",
             "required": false,
             "valueDefault": ""
           }
+        },
+        {
+          "comment": "Bairro",
+          "fieldName": "bairo",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Cep",
+          "fieldName": "cep",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Cidade",
+          "fieldName": "cidade",
+          "fieldProperties": {
+            "fieldType": "city",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "EAGER",
+            "relationShip": "OneToOne"
+          }
         }
       ]
     }
   ],
-  "endpoints": [
-    {
-      "methodname": "movimentacoesSave",
-      "metadata": {
-        "input": {
-          "parameters": [
-            {
-              "movimentacao": "movimentacoes",
-              "caixa": "caixa",
-              "dubplicatas": "duplicatas*"
-            }
-          ]
-        },
-        "output": "movimentacoes",
-        "anonymous": false
-      }
-    }
-  ],
+  "endpoints": [],
   "enums": []
 }

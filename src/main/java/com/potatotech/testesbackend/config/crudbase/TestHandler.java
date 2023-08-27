@@ -1,6 +1,7 @@
 package com.potatotech.testesbackend.config.crudbase;
 
-import com.potatotech.authenticate.stereotype.Anonymous;
+
+import com.potatotech.authorization.stereotype.Anonymous;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

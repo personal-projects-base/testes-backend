@@ -34,7 +34,7 @@ public class StateHandler implements HandlerBase<StateDTO, UUID> {
     }
 
     @Override
-    public List<StateDTO> getAll(RequestData obj) {
+    public List<ResponseData> getAll(RequestData obj) {
         return null;
     }
 }

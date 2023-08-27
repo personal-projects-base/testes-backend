@@ -1,5 +1,6 @@
 package com.potatotech.testesbackend_gen;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +12,50 @@ import java.util.UUID;
 @Component
 public class StateDTOConverter {
 
-        public StateEntity toEntity(StateDTO dto){
-            return new StateEntity(dto.id(), dto.name(), dto.code(), null);
-        }
+    
+    @Autowired
+    CountryDTOConverter countryDtoConverter;
 
-        public StateDTO toDTO(StateEntity entity){
-            return new StateDTO(entity.getId(), entity.getName(), entity.getCode());
-        }
+    public StateEntity toEntity(StateDTO dto){
 
-        public List<StateEntity> toEntity(List<StateDTO> obj){
-            var list = new ArrayList<StateEntity>();
-            obj.forEach(dto -> {
-                var entity = new StateEntity(dto.id(), dto.name(), dto.code(), null);
-                list.add(entity);
-            });
-            return list;
-        }
+        var entity = new StateEntity();
+        
+        entity.setId(dto.id);
+        entity.setName(dto.name);
+        entity.setCode(dto.code);
+        entity.setCountry(countryDtoConverter.toEntity(dto.country));
 
-        public List<StateDTO> toDTO(List<StateEntity> obj){
-            var list = new ArrayList<StateDTO>();
-            obj.forEach(entity -> {
-                var dto = new StateDTO(entity.getId(), entity.getName(), entity.getCode());
-                list.add(dto);
-            });
-            return list;
-        }
+
+        return entity;
+    }
+
+    public StateDTO toDTO(StateEntity entity){
+
+        var dto = new StateDTO();
+        
+        dto.id = entity.getId();
+        dto.name = entity.getName();
+        dto.code = entity.getCode();
+        dto.country = countryDtoConverter.toDTO(entity.getCountry());
+
+        return dto;
+    }
+
+    public List<StateEntity> toEntity(List<StateDTO> obj){
+        var list = new ArrayList<StateEntity>();
+        obj.forEach(dto -> {
+            var entity = toEntity(dto);
+            list.add(entity);
+        });
+        return list;
+    }
+
+    public List<StateDTO> toDTO(List<StateEntity> obj){
+        var list = new ArrayList<StateDTO>();
+        obj.forEach(entity -> {
+            var dto = toDTO(entity);
+            list.add(dto);
+        });
+        return list;
+    }
 }

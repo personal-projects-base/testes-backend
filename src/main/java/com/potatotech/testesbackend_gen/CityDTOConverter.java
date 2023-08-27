@@ -1,5 +1,6 @@
 package com.potatotech.testesbackend_gen;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +12,50 @@ import java.util.UUID;
 @Component
 public class CityDTOConverter {
 
-        public CityEntity toEntity(CityDTO dto){
-            return new CityEntity(dto.id(), dto.name(), dto.code(), null);
-        }
+    
+    @Autowired
+    StateDTOConverter stateDtoConverter;
 
-        public CityDTO toDTO(CityEntity entity){
-            return new CityDTO(entity.getId(), entity.getName(), entity.getCode());
-        }
+    public CityEntity toEntity(CityDTO dto){
 
-        public List<CityEntity> toEntity(List<CityDTO> obj){
-            var list = new ArrayList<CityEntity>();
-            obj.forEach(dto -> {
-                var entity = new CityEntity(dto.id(), dto.name(), dto.code(), null);
-                list.add(entity);
-            });
-            return list;
-        }
+        var entity = new CityEntity();
+        
+        entity.setId(dto.id);
+        entity.setName(dto.name);
+        entity.setCode(dto.code);
+        entity.setState(stateDtoConverter.toEntity(dto.state));
 
-        public List<CityDTO> toDTO(List<CityEntity> obj){
-            var list = new ArrayList<CityDTO>();
-            obj.forEach(entity -> {
-                var dto = new CityDTO(entity.getId(), entity.getName(), entity.getCode());
-                list.add(dto);
-            });
-            return list;
-        }
+
+        return entity;
+    }
+
+    public CityDTO toDTO(CityEntity entity){
+
+        var dto = new CityDTO();
+        
+        dto.id = entity.getId();
+        dto.name = entity.getName();
+        dto.code = entity.getCode();
+        dto.state = stateDtoConverter.toDTO(entity.getState());
+
+        return dto;
+    }
+
+    public List<CityEntity> toEntity(List<CityDTO> obj){
+        var list = new ArrayList<CityEntity>();
+        obj.forEach(dto -> {
+            var entity = toEntity(dto);
+            list.add(entity);
+        });
+        return list;
+    }
+
+    public List<CityDTO> toDTO(List<CityEntity> obj){
+        var list = new ArrayList<CityDTO>();
+        obj.forEach(entity -> {
+            var dto = toDTO(entity);
+            list.add(dto);
+        });
+        return list;
+    }
 }
