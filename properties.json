@@ -1,6 +1,7 @@
 {
   "mainPackage": "com.potatotech.testesbackend",
   "projectName": "testes-backend",
+  "language": "JAVA",
   "entities": [
     {
       "entityName": "city",
