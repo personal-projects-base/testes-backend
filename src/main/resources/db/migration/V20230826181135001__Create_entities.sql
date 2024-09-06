@@ -1,5 +1,26 @@
 --Entities
 
+CREATE TABLE IF NOT EXISTS pessoa(
+
+                                     id serial,
+                                     name varchar,
+                                     created_by varchar(80),
+    created_date timestamp,
+    last_modified_by varchar(80),
+    last_modified_date timestamp
+    );
+
+CREATE TABLE IF NOT EXISTS pessoa_juridica(
+
+                                              id serial,
+                                              cnpj varchar,
+                                              pessoa integer,
+                                              created_by varchar(80),
+    created_date timestamp,
+    last_modified_by varchar(80),
+    last_modified_date timestamp
+    );
+
 CREATE TABLE IF NOT EXISTS city(
 
                                    id uuid,
@@ -35,15 +56,24 @@ CREATE TABLE IF NOT EXISTS country(
     last_modified_date timestamp
     );
 
-CREATE TABLE IF NOT EXISTS pessoas(
+CREATE TABLE IF NOT EXISTS fiscal(
 
-                                      id uuid,
-                                      name varchar,
-                                      logradouro varchar,
-                                      bairo varchar,
-                                      cep varchar,
-                                      cidade uuid,
-                                      created_by varchar(80),
+                                     id serial,
+                                     optante_simples boolean,
+                                     mod_tributacao varchar,
+                                     cod_regime_tributario integer,
+                                     created_by varchar(80),
+    created_date timestamp,
+    last_modified_by varchar(80),
+    last_modified_date timestamp
+    );
+
+CREATE TABLE IF NOT EXISTS pessoa_telefone(
+
+                                              id serial,
+                                              fone varchar,
+                                              pessoa integer,
+                                              created_by varchar(80),
     created_date timestamp,
     last_modified_by varchar(80),
     last_modified_date timestamp
@@ -51,12 +81,18 @@ CREATE TABLE IF NOT EXISTS pessoas(
 
 -- PKs
 
-ALTER TABLE city  ADD CONSTRAINT ok_fttCY65PRHT4rqfbbmcb  PRIMARY KEY (id);
-ALTER TABLE state  ADD CONSTRAINT ok_bfoSUhDX21Knqoqsboe4  PRIMARY KEY (id);
-ALTER TABLE country  ADD CONSTRAINT ok_yuRL3pMuVQghqcwRr68f  PRIMARY KEY (id);
-ALTER TABLE pessoas  ADD CONSTRAINT ok_ld8iiDM7Lisdqbwjgeuw  PRIMARY KEY (id);
+ALTER TABLE pessoa  ADD CONSTRAINT ok_bdYQiMeF4CAH1Fmj0Pix  PRIMARY KEY (id);
+ALTER TABLE pessoa_juridica  ADD CONSTRAINT ok_AJaAQlqjDzKPASIiGt6n  PRIMARY KEY (id);
+ALTER TABLE city  ADD CONSTRAINT ok_1oXp6vxKVaJBz253KrIx  PRIMARY KEY (id);
+ALTER TABLE state  ADD CONSTRAINT ok_LIva4BzPOLnXyDuP4kji  PRIMARY KEY (id);
+ALTER TABLE country  ADD CONSTRAINT ok_a2S8IlLl7AH1bMtnJUF1  PRIMARY KEY (id);
+ALTER TABLE fiscal  ADD CONSTRAINT ok_lqLJ1RlJRXM5bbL6firv  PRIMARY KEY (id);
+ALTER TABLE pessoa_telefone  ADD CONSTRAINT ok_nrfsXPvONrppNguXYKuQ  PRIMARY KEY (id);
 -- Fks
 
-ALTER TABLE city ADD CONSTRAINT fk_C4fpyh3CJewUG8bSi2mU FOREIGN KEY (state) REFERENCES state(id);
-ALTER TABLE state ADD CONSTRAINT fk_nwlhOUZKgGE8oHEDG31o FOREIGN KEY (country) REFERENCES country(id);
-ALTER TABLE pessoas ADD CONSTRAINT fk_3rMU08d3P6rMZutwZd2Y FOREIGN KEY (cidade) REFERENCES city(id);
+ALTER TABLE pessoa_juridica ADD CONSTRAINT fk_Z6Y0dAh3oMYoq53MmuvB FOREIGN KEY (pessoa) REFERENCES pessoa(id);
+ALTER TABLE city ADD CONSTRAINT fk_cu9r6gbuqNVkXenoDrzV FOREIGN KEY (state) REFERENCES state(id);
+ALTER TABLE state ADD CONSTRAINT fk_cVzEugGAETs8d4WVOviF FOREIGN KEY (country) REFERENCES country(id);
+ALTER TABLE pessoa_telefone ADD CONSTRAINT fk_FiTTMre9cNpEktqshAtD FOREIGN KEY (pessoa) REFERENCES pessoa(id);
+--RelationShips
+

@@ -3,7 +3,7 @@ package com.potatotech.testesbackend.config.rabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class RabbitConsumer {
 
     @RabbitListener(queues = "${rabbit.queue.name}")

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
-@EnableRabbit
+//@EnableRabbit
 @SpringBootApplication
 public class StarterApplication {
 

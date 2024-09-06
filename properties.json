@@ -1,10 +1,110 @@
 {
   "mainPackage": "com.potatotech.testesbackend",
   "projectName": "testes-backend",
+  "language": "JAVA",
   "entities": [
+    {
+      "entityName": "pessoa",
+      "tableName": "pessoa",
+      "entityFields": [
+        {
+          "comment": "Identificador único da pessoa",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "int",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "Nome Pessoa",
+          "fieldName": "name",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": true,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Pessoas Juridicas",
+          "fieldName": "pessoaJuridica",
+          "fieldProperties": {
+            "fieldType": "pessoaJuridica",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "LAZY",
+            "relationShip": "OneToOne",
+            "bidirectional": true
+          }
+        },
+        {
+          "comment": "Pessoas Telefone",
+          "fieldName": "pessoaTelefone",
+          "list": true,
+          "fieldProperties": {
+            "fieldType": "pessoaTelefone",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "LAZY",
+            "relationShip": "OneToMany",
+            "bidirectional": true
+          }
+        }
+      ]
+    },
+    {
+      "entityName": "pessoaJuridica",
+      "tableName": "pessoaJuridica",
+      "entityFields": [
+        {
+          "comment": "Identificador único da pessoa juridica",
+          "fieldName": "id",
+          "fieldProperties": {
+            "fieldType": "int",
+            "required": true,
+            "valueDefault": ""
+          },
+          "metadata": {
+            "nullable": true,
+            "key": true
+          }
+        },
+        {
+          "comment": "CNPJ da pessoa Juridica",
+          "fieldName": "cnpj",
+          "fieldProperties": {
+            "fieldType": "string",
+            "required": true,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Referencia de Pessoas",
+          "fieldName": "pessoa",
+          "fieldProperties": {
+            "fieldType": "pessoa",
+            "required": false,
+            "valueDefault": ""
+          },
+          "relationShips": {
+            "fetchType": "LAZY",
+            "relationShip": "OneToOne"
+          }
+        }
+      ]
+    },
     {
       "entityName": "city",
       "tableName": "city",
+      "classExtends" : "custom",
       "entityFields": [
         {
           "comment": "Identificador único da cidade",
@@ -38,7 +138,7 @@
           }
         },
         {
-          "comment": "UD",
+          "comment": "State",
           "fieldName": "state",
           "fieldProperties": {
             "fieldType": "state",
@@ -46,8 +146,8 @@
             "valueDefault": ""
           },
           "relationShips": {
-            "fetchType": "LAZY",
-            "relationShip": "ManyToOne"
+            "fetchType": "EAGER",
+            "relationShip": "OneToOne"
           }
         }
       ]
@@ -55,6 +155,7 @@
     {
       "entityName": "state",
       "tableName": "state",
+      "classExtends" : "custom",
       "entityFields": [
         {
           "comment": "Identificador único do estado",
@@ -97,7 +198,7 @@
           },
           "relationShips": {
             "fetchType": "EAGER",
-            "relationShip": "ManyToOne"
+            "relationShip": "OneToOne"
           }
         }
       ]
@@ -105,6 +206,7 @@
     {
       "entityName": "country",
       "tableName": "country",
+      "classExtends" : "custom",
       "entityFields": [
         {
           "comment": "Identificador único do estado",
@@ -140,14 +242,15 @@
       ]
     },
     {
-      "entityName": "pessoas",
-      "tableName": "pessoas",
+      "entityName": "fiscal",
+      "tableName": "fiscal",
+      "classExtends" : "custom",
       "entityFields": [
         {
-          "comment": "Identificador único do cadastro da pessoa",
+          "comment": "Identificador único da pessoa juridica",
           "fieldName": "id",
           "fieldProperties": {
-            "fieldType": "uuid",
+            "fieldType": "int",
             "required": true,
             "valueDefault": ""
           },
@@ -157,8 +260,17 @@
           }
         },
         {
-          "comment": "Nome da pessoa",
-          "fieldName": "name",
+          "comment": "Empresa Optante pelo simples Nacional",
+          "fieldName": "optanteSimples",
+          "fieldProperties": {
+            "fieldType": "boolean",
+            "required": false,
+            "valueDefault": ""
+          }
+        },
+        {
+          "comment": "Modelidade da tributação",
+          "fieldName": "modTributacao",
           "fieldProperties": {
             "fieldType": "string",
             "required": false,
@@ -166,56 +278,26 @@
           }
         },
         {
-          "comment": "Logradouro",
-          "fieldName": "logradouro",
+          "comment": "Código Regime Tributário",
+          "fieldName": "codRegimeTributario",
           "fieldProperties": {
-            "fieldType": "string",
+            "fieldType": "int",
             "required": false,
             "valueDefault": ""
-          }
-        },
-        {
-          "comment": "Bairro",
-          "fieldName": "bairo",
-          "fieldProperties": {
-            "fieldType": "string",
-            "required": false,
-            "valueDefault": ""
-          }
-        },
-        {
-          "comment": "Cep",
-          "fieldName": "cep",
-          "fieldProperties": {
-            "fieldType": "string",
-            "required": false,
-            "valueDefault": ""
-          }
-        },
-        {
-          "comment": "Cidade",
-          "fieldName": "cidade",
-          "fieldProperties": {
-            "fieldType": "city",
-            "required": false,
-            "valueDefault": ""
-          },
-          "relationShips": {
-            "fetchType": "EAGER",
-            "relationShip": "OneToOne"
           }
         }
       ]
     },
     {
-      "entityName": "usuarios",
-      "tableName": "usuarios",
+      "entityName": "pessoaTelefone",
+      "tableName": "pessoaTelefone",
+      "classExtends" : "custom",
       "entityFields": [
         {
-          "comment": "Identificador único do usuário",
+          "comment": "Identificador único da pessoa juridica",
           "fieldName": "id",
           "fieldProperties": {
-            "fieldType": "uuid",
+            "fieldType": "int",
             "required": true,
             "valueDefault": ""
           },
@@ -225,8 +307,8 @@
           }
         },
         {
-          "comment": "Nome do usuário",
-          "fieldName": "name",
+          "comment": "Numero telefone",
+          "fieldName": "fone",
           "fieldProperties": {
             "fieldType": "string",
             "required": true,
@@ -234,45 +316,16 @@
           }
         },
         {
-          "comment": "grupos de permissionamentos",
-          "fieldName": "roles",
-          "list": true,
+          "comment": "Relacionamento com a tabela pessoa",
+          "fieldName": "pessoa",
           "fieldProperties": {
-            "fieldType": "roles",
+            "fieldType": "pessoa",
             "required": true,
             "valueDefault": ""
           },
           "relationShips": {
             "fetchType": "LAZY",
-            "relationShip": "ManyToMany"
-          }
-        }
-      ]
-    },
-    {
-      "entityName": "roles",
-      "tableName": "roles",
-      "entityFields": [
-        {
-          "comment": "Identificador único do permissionamento",
-          "fieldName": "id",
-          "fieldProperties": {
-            "fieldType": "uuid",
-            "required": true,
-            "valueDefault": ""
-          },
-          "metadata": {
-            "nullable": true,
-            "key": true
-          }
-        },
-        {
-          "comment": "Nome do grupo de permisisonamento",
-          "fieldName": "name",
-          "fieldProperties": {
-            "fieldType": "string",
-            "required": true,
-            "valueDefault": ""
+            "relationShip": "OneToOne"
           }
         }
       ]
