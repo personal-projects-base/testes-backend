@@ -44,6 +44,7 @@ public class InterceptorConfig extends Authenticate implements HandlerIntercepto
         }
         var auth = request.getHeader(AUTHORIZATION);
         var tenant = request.getHeader(TENANT);
+        tenant = "public";
 
 //        if(!tenantConfiguration.validAnonymous(handler)){
 //            var user = this.isAuthenticated(auth);
@@ -51,7 +52,7 @@ public class InterceptorConfig extends Authenticate implements HandlerIntercepto
 //            TenantContext.setCurrentUser(user);
 //        } else {
             if(tenant == null){
-                throw new ServiceException(HttpStatus.FORBIDDEN,"tenant is required");
+                //throw new ServiceException(HttpStatus.FORBIDDEN,"tenant is required");
             }
 
             TenantContext.setCurrentTenant(tenant);
